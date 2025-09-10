@@ -5,6 +5,7 @@ import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import "./globals.css"
+import ClarityAnalytics from "@/components/analytics/clarity"
 
 export const metadata: Metadata = {
   title: "Saurabh Chandra - Software & AI Engineer",
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         <Suspense fallback={null}>{children}</Suspense>
         <Analytics />
+        <ClarityAnalytics />
       </body>
     </html>
   )
