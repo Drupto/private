@@ -4,12 +4,17 @@ import { useState } from 'react';
 import { CheckCircle2, Loader2, MessageCircle } from 'lucide-react';
 
 /**
- * Hero lead form — restyled with this project's design tokens
- * (bg-card / primary / border / ring from globals.css), no hardcoded colors.
+ * Hero lead form — submits to Netlify Forms when deployed (free tier: 100
+ * submissions/month, Akismet spam filtering, email notifications & webhooks
+ * configured in the Netlify UI). Falls back to /api/lead in local dev, where
+ * Netlify Forms are not active.
  */
 
 const WHATSAPP_URL = 'https://wa.me/916388063038';
-const ENDPOINT = '/api/lead';
+/** Static page that registers the Netlify form (see public/__forms.html). */
+const NETLIFY_FORM_PATH = '/__forms.html';
+/** Local-dev fallback endpoint (deployed, it runs as a Netlify Function). */
+const FALLBACK_ENDPOINT = '/api/lead';
 
 const SERVICE_CHOICES = [
   'Web Development',
@@ -65,20 +70,49 @@ const LeadForm = ({
     if (status === 'submitting') return; // prevent duplicate submissions
     setStatus('submitting');
     setErrorMsg('');
-    try {
-      const res = await fetch(ENDPOINT, {
+
+    const fields = {
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      city: form.city,
+      service: form.service || 'Not specified',
+      source: source ?? 'unknown',
+    };
+
+    // Primary: Netlify Forms (works on the deployed site).
+    // "bot-field" must be empty — bots fill it and Netlify discards the entry.
+    const submitToNetlify = async () => {
+      const body = new URLSearchParams({
+        'form-name': 'lead',
+        'bot-field': '',
+        ...fields,
+      });
+      const res = await fetch(NETLIFY_FORM_PATH, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString(),
+      });
+      if (!res.ok) throw new Error('Netlify submission failed');
+    };
+
+    // Fallback: /api/lead route (local dev; deployed it runs as a Function).
+    const submitToFallback = async () => {
+      const res = await fetch(FALLBACK_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          phone: form.phone,
-          city: form.city,
-          service: form.service || 'Not specified',
-          source,
-        }),
+        body: JSON.stringify(fields),
       });
       if (!res.ok) throw new Error('Submission failed');
+    };
+
+    try {
+      try {
+        await submitToNetlify();
+      } catch {
+        // Netlify Forms aren't active locally (or the POST failed) — use the API.
+        await submitToFallback();
+      }
       setStatus('success');
     } catch {
       setStatus('error');
@@ -86,7 +120,7 @@ const LeadForm = ({
     }
   };
 
-  // Design-token classes — matches the dark purple theme in globals.css
+  // Design-token classes — matches the dark monochrome theme in globals.css
   const inputClass =
     'w-full px-4 py-3 rounded-md border border-border bg-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary transition-shadow text-sm disabled:opacity-60';
   const labelClass = 'block text-sm font-medium text-primary mb-1.5';
@@ -95,7 +129,7 @@ const LeadForm = ({
   return (
     <div
       id={anchorId}
-      className={`rounded-2xl rounded-tl-[2.5rem] bg-card/80 backdrop-blur border border-primary/20 p-6 md:p-8 shadow-xl shadow-primary/10 hover:shadow-primary/20 transition-shadow scroll-mt-24 ${className}`}
+      className={`rounded-2xl rounded-tl-[2.5rem] bg-card/80 backdrop-blur border border-primary/20 p-6 md:p-8 shadow-xl shadow-white/10 hover:shadow-white/20 transition-shadow scroll-mt-24 ${className}`}
     >
       <h2 id={headingId} className="text-xl md:text-2xl font-semibold text-primary mb-1">
         {title}
@@ -172,7 +206,7 @@ const LeadForm = ({
               <input
                 id={`${idPrefix}-consent`} name="consent" type="checkbox"
                 checked={form.consent} onChange={(e) => update('consent', e.target.checked)}
-                className="mt-1 h-4 w-4 rounded border-border accent-[#9b59b6] focus:ring-ring"
+                className="mt-1 h-4 w-4 rounded border-border accent-white focus:ring-ring"
                 disabled={status === 'submitting'}
               />
               <label htmlFor={`${idPrefix}-consent`} className="text-xs text-muted-foreground leading-relaxed">
@@ -185,7 +219,7 @@ const LeadForm = ({
               disabled={
                 status === 'submitting' || !form.name || !form.email || !form.phone || !form.consent
               }
-              className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground py-3.5 rounded-md font-medium hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-2 bg-white text-black py-3.5 rounded-md font-medium hover:bg-gray-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {status === 'submitting' ? (
                 <><Loader2 size={18} className="animate-spin" /> Submitting…</>

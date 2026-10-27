@@ -1,0 +1,11 @@
+[build]
+  command = "next build"
+  publish = ".next"
+
+# Next.js runtime — SSR, route handlers (/api/lead), image optimization.
+# Netlify auto-installs this for Next projects; pinning it keeps builds deterministic.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_VERSION = "20"

@@ -15,7 +15,6 @@ import {
   Linkedin,
   Twitter,
   Instagram,
-  Calendar,
   Award,
   Briefcase,
 } from "lucide-react"
@@ -72,15 +71,6 @@ export default function Home() {
     </svg>
   )
 
-  const skills = [
-    { name: "Machine Learning & AI", percentage: 95, delay: 0 },
-    { name: "Python & Data Science", percentage: 90, delay: 200 },
-    { name: "Full-Stack Development", percentage: 88, delay: 400 },
-    { name: "Cloud Architecture (AWS/Azure)", percentage: 85, delay: 600 },
-    { name: "DevOps & CI/CD", percentage: 82, delay: 800 },
-    { name: "Database Design & Management", percentage: 87, delay: 1000 },
-  ]
-
   const timeline = [
     {
       year: "2024",
@@ -122,7 +112,7 @@ export default function Home() {
         className={`flex items-center justify-between px-6 py-4 border-b border-border/20 transition-all duration-1000 relative z-50 ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}`}
       >
         <div className="flex items-center space-x-8">
-          <div className="text-xl font-bold text-white bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text hover:text-transparent transition-all duration-300 cursor-pointer">
+          <div className="text-xl font-bold text-white bg-gradient-to-r from-white to-gray-400 bg-clip-text hover:text-transparent transition-all duration-300 cursor-pointer">
             SAURABH CHANDRA
           </div>
           <div className="hidden md:flex items-center space-x-6">
@@ -159,7 +149,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex items-center space-x-4">
-          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground hover:scale-105 transition-all duration-300 group">
+          <Button className="bg-white hover:bg-gray-200 text-black hover:scale-105 transition-all duration-300 group">
             <a href="tel:+916388063038" className="flex items-center">
               CALL NOW
               <Phone className="w-4 h-4 ml-2 group-hover:animate-pulse" />
@@ -189,7 +179,7 @@ export default function Home() {
       >
         <div className="p-6 space-y-6">
           <div className="flex items-center justify-between">
-            <div className="text-xl font-bold text-white bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text hover:text-transparent transition-all duration-300">
+            <div className="text-xl font-bold text-white bg-gradient-to-r from-white to-gray-400 bg-clip-text hover:text-transparent transition-all duration-300">
               SAURABH CHANDRA
             </div>
             <button onClick={toggleMobileMenu} className="p-2 hover:bg-primary/10 rounded-lg transition-colors">
@@ -231,7 +221,7 @@ export default function Home() {
           </div>
 
           <div className="pt-6 border-t border-border/20">
-            <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground hover:scale-105 transition-all duration-300 group">
+            <Button className="w-full bg-white hover:bg-gray-200 text-black hover:scale-105 transition-all duration-300 group">
               <a href="tel:+916388063038" className="flex items-center justify-center w-full">
                 CALL NOW
                 <Phone className="w-4 h-4 ml-2 group-hover:animate-pulse" />
@@ -283,7 +273,7 @@ export default function Home() {
                 </span>
                 <br />
                 <span
-                  className={`inline-block text-white hover:bg-gradient-to-r hover:from-purple-400 hover:via-blue-400 hover:to-purple-600 hover:bg-clip-text hover:text-transparent transition-all duration-700 delay-900 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+                  className={`inline-block text-white hover:bg-gradient-to-r hover:from-white hover:via-gray-300 hover:to-gray-500 hover:bg-clip-text hover:text-transparent transition-all duration-700 delay-900 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
                 >
                   Solutions
                 </span>
@@ -295,7 +285,7 @@ export default function Home() {
                 about building intelligent systems that solve real-world problems.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground hover:scale-105 transition-all duration-300 group">
+                <Button className="bg-white hover:bg-gray-200 text-black hover:scale-105 transition-all duration-300 group">
                   <a href="https://druptoconsultants.com/contact" className="flex items-center">
                     START YOUR PROJECT
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
@@ -329,7 +319,7 @@ export default function Home() {
       <section id="about" className="px-6 py-16 max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 group">
-            <h2 className="text-4xl font-bold text-balance text-white hover:bg-gradient-to-r hover:from-purple-400 hover:to-blue-400 hover:bg-clip-text hover:text-transparent transition-all duration-500">
+            <h2 className="text-4xl font-bold text-balance text-white hover:bg-gradient-to-r hover:from-white hover:to-gray-400 hover:bg-clip-text hover:text-transparent transition-all duration-500">
               About Saurabh Chandra
             </h2>
             <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
@@ -363,85 +353,54 @@ export default function Home() {
             <img
               src="/portfolio.jpg"
               alt="Saurabh Chandra - Software & AI Engineer"
-              className="w-full h-auto rounded-lg hover:scale-105 hover:rotate-1 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20"
+              className="w-full h-auto rounded-lg hover:scale-105 hover:rotate-1 transition-all duration-500 hover:shadow-2xl hover:shadow-white/20"
             />
           </div>
         </div>
       </section>
 
-      {/* Skills Timeline & Progress Bars Section */}
-      <section id="skills-timeline" className="px-6 py-20 max-w-7xl mx-auto">
+      {/* Professional Journey Section */}
+      <section id="skills-timeline" className="relative px-6 py-20 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4">— EXPERTISE & EXPERIENCE</p>
-          <h2 className="text-4xl font-bold mb-8 text-balance text-white hover:bg-gradient-to-r hover:from-purple-400 hover:to-blue-400 hover:bg-clip-text hover:text-transparent transition-all duration-500">
-            Skills & Professional Journey
+          <h2 className="text-4xl font-bold mb-8 text-balance text-white hover:bg-gradient-to-r hover:from-white hover:to-gray-400 hover:bg-clip-text hover:text-transparent transition-all duration-500">
+            Professional Journey
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto">
-            A decade of experience in software engineering and AI, with a proven track record of delivering innovative
-            solutions.
+            A decade of experience in software engineering and AI — from writing my first production backend to leading
+            enterprise AI transformation.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
-          {/* Skills Progress Bars */}
-          <div className="space-y-8">
-            <h3 className="text-2xl font-bold text-white mb-8 flex items-center">
-              <Award className="w-6 h-6 mr-3 text-primary" />
-              Technical Skills
-            </h3>
-            <div className="space-y-6">
-              {skills.map((skill, index) => (
-                <div key={skill.name} className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium text-foreground">{skill.name}</span>
-                    <span className="text-sm text-primary font-semibold">{skill.percentage}%</span>
-                  </div>
-                  <div className="w-full bg-border/30 rounded-full h-2 overflow-hidden">
-                    <div
-                      className={`h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full transition-all duration-1000 ease-out ${
-                        skillsVisible ? "animate-pulse" : ""
-                      }`}
-                      style={{
-                        width: skillsVisible ? `${skill.percentage}%` : "0%",
-                        transitionDelay: `${skill.delay}ms`,
-                      }}
-                    />
+        {/* Alternating full-width timeline */}
+        <div className="relative max-w-5xl mx-auto">
+          {/* Timeline line */}
+          <div className="absolute left-6 lg:left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 bg-gradient-to-b from-white via-gray-400 to-white opacity-30" />
+
+          <div className="space-y-10 lg:space-y-14">
+            {timeline.map((item, index) => (
+              <div
+                key={item.year}
+                className={`relative group transition-all duration-700 ${
+                  skillsVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+                }`}
+                style={{ transitionDelay: `${index * 150}ms` }}
+              >
+                {/* Timeline dot */}
+                <div className="absolute left-6 lg:left-1/2 top-1.5 -translate-x-1/2 z-10 w-12 h-12 bg-background rounded-full flex items-center justify-center border-2 border-primary/50 group-hover:border-primary group-hover:shadow-lg group-hover:shadow-white/30 transition-all duration-300">
+                  <div className="text-primary group-hover:scale-110 transition-transform duration-300">
+                    {item.icon}
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Professional Timeline */}
-          <div className="space-y-8">
-            <h3 className="text-2xl font-bold text-white mb-8 flex items-center">
-              <Calendar className="w-6 h-6 mr-3 text-primary" />
-              Professional Timeline
-            </h3>
-            <div className="relative">
-              {/* Timeline line */}
-              <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 via-blue-500 to-purple-500 opacity-30" />
-
-              <div className="space-y-8">
-                {timeline.map((item, index) => (
-                  <div
-                    key={item.year}
-                    className={`relative flex items-start space-x-4 transition-all duration-700 ${
-                      skillsVisible ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"
-                    }`}
-                    style={{ transitionDelay: `${index * 150}ms` }}
-                  >
-                    {/* Timeline dot */}
-                    <div className="relative z-10 w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center border-2 border-primary/50 group-hover:border-primary transition-all duration-300">
-                      <div className="text-primary group-hover:scale-110 transition-transform duration-300">
-                        {item.icon}
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="flex-1 group">
-                      <Card className="bg-card/50 border-border/20 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
-                        <CardContent className="p-6">
+                {/* Content — alternating left/right on desktop */}
+                <div
+                  className={`pl-16 lg:pl-0 lg:w-[calc(50%-2.5rem)] ${
+                    index % 2 === 0 ? "lg:ml-auto" : "lg:mr-auto"
+                  }`}
+                >
+                  <Card className="bg-card/50 border-border/20 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-white/10 hover-lift">
+                    <CardContent className="p-6">
                           <div className="flex items-center justify-between mb-2">
                             <span className="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">
                               {item.year}
@@ -454,20 +413,18 @@ export default function Home() {
                           <p className="text-sm text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
                             {item.description}
                           </p>
-                        </CardContent>
-                      </Card>
-                    </div>
+                      </CardContent>
+                    </Card>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
       </section>
 
       {/* Business Stats Section */}
       <section className="px-6 py-16 max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-8 text-center">
+        <div className="grid md:grid-cols-3 gap-8 text-center">
           <div className="space-y-2 group hover:scale-105 transition-all duration-300">
             <div className="text-4xl font-bold text-primary group-hover:text-white transition-colors duration-300">
               10+
@@ -486,14 +443,6 @@ export default function Home() {
           </div>
           <div className="space-y-2 group hover:scale-105 transition-all duration-300">
             <div className="text-4xl font-bold text-primary group-hover:text-white transition-colors duration-300">
-              100+
-            </div>
-            <div className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-              Projects Delivered
-            </div>
-          </div>
-          <div className="space-y-2 group hover:scale-105 transition-all duration-300">
-            <div className="text-4xl font-bold text-primary group-hover:text-white transition-colors duration-300">
               7
             </div>
             <div className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">
@@ -507,7 +456,7 @@ export default function Home() {
       <section id="business" className="relative">
         <div className="absolute inset-0 w-full overflow-hidden pointer-events-none">
           <div
-            className="absolute inset-0 w-full h-full opacity-5 animate-spin-slow"
+            className="absolute inset-0 w-full h-full opacity-5 animate-spin-slow fan-white"
             style={{
               backgroundImage: `url('/fan-background.png')`,
               backgroundSize: "80% 80%",
@@ -517,7 +466,7 @@ export default function Home() {
             }}
           />
           <div
-            className="absolute -top-20 -left-20 w-96 h-96 opacity-8 animate-spin-slow"
+            className="absolute -top-20 -left-20 w-96 h-96 opacity-8 animate-spin-slow fan-white"
             style={{
               backgroundImage: `url('/fan-background.png')`,
               backgroundSize: "contain",
@@ -528,7 +477,7 @@ export default function Home() {
             }}
           />
           <div
-            className="absolute -top-32 -right-32 w-80 h-80 opacity-6 animate-spin-slow"
+            className="absolute -top-32 -right-32 w-80 h-80 opacity-6 animate-spin-slow fan-white"
             style={{
               backgroundImage: `url('/fan-background.png')`,
               backgroundSize: "contain",
@@ -538,7 +487,7 @@ export default function Home() {
             }}
           />
           <div
-            className="absolute -bottom-24 -left-24 w-72 h-72 opacity-7 animate-spin-slow"
+            className="absolute -bottom-24 -left-24 w-72 h-72 opacity-7 animate-spin-slow fan-white"
             style={{
               backgroundImage: `url('/fan-background.png')`,
               backgroundSize: "contain",
@@ -549,7 +498,7 @@ export default function Home() {
             }}
           />
           <div
-            className="absolute -bottom-16 -right-16 w-64 h-64 opacity-5 animate-spin-slow"
+            className="absolute -bottom-16 -right-16 w-64 h-64 opacity-5 animate-spin-slow fan-white"
             style={{
               backgroundImage: `url('/fan-background.png')`,
               backgroundSize: "contain",
@@ -559,7 +508,7 @@ export default function Home() {
             }}
           />
           <div
-            className="absolute top-1/4 left-1/3 w-32 h-32 opacity-4 animate-spin-slow"
+            className="absolute top-1/4 left-1/3 w-32 h-32 opacity-4 animate-spin-slow fan-white"
             style={{
               backgroundImage: `url('/fan-background.png')`,
               backgroundSize: "contain",
@@ -569,7 +518,7 @@ export default function Home() {
             }}
           />
           <div
-            className="absolute top-3/4 right-1/3 w-28 h-28 opacity-3 animate-spin-slow"
+            className="absolute top-3/4 right-1/3 w-28 h-28 opacity-3 animate-spin-slow fan-white"
             style={{
               backgroundImage: `url('/fan-background.png')`,
               backgroundSize: "contain",
@@ -586,7 +535,7 @@ export default function Home() {
             <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4 animate-fade-in">
               — DRUPTO CONSULTANTS
             </p>
-            <h2 className="text-4xl font-bold mb-8 text-balance text-white hover:bg-gradient-to-r hover:from-purple-400 hover:to-blue-400 hover:bg-clip-text hover:text-transparent transition-all duration-500">
+            <h2 className="text-4xl font-bold mb-8 text-balance text-white hover:bg-gradient-to-r hover:from-white hover:to-gray-400 hover:bg-clip-text hover:text-transparent transition-all duration-500">
               Leading IT Solutions Provider
               <br />
               in India
@@ -598,9 +547,9 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="bg-card border-border/20 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/10 group">
+            <Card className="bg-card border-border/20 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-white/10 group">
               <CardContent className="p-8 space-y-6">
-                <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary/20">
+                <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-white/20">
                   <Brain className="w-6 h-6 text-primary group-hover:animate-pulse" />
                 </div>
                 <h3 className="text-xl font-bold group-hover:text-primary transition-colors duration-300">
@@ -613,9 +562,9 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="bg-card border-border/20 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/10 group">
+            <Card className="bg-card border-border/20 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-white/10 group">
               <CardContent className="p-8 space-y-6">
-                <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary/20">
+                <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-white/20">
                   <Cloud className="w-6 h-6 text-primary group-hover:animate-pulse" />
                 </div>
                 <h3 className="text-xl font-bold group-hover:text-primary transition-colors duration-300">
@@ -628,9 +577,9 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="bg-card border-border/20 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/10 group">
+            <Card className="bg-card border-border/20 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-white/10 group">
               <CardContent className="p-8 space-y-6">
-                <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary/20">
+                <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-white/20">
                   <Code className="w-6 h-6 text-primary group-hover:animate-pulse" />
                 </div>
                 <h3 className="text-xl font-bold group-hover:text-primary transition-colors duration-300">
@@ -643,9 +592,9 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="bg-card border-border/20 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/10 group">
+            <Card className="bg-card border-border/20 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-white/10 group">
               <CardContent className="p-8 space-y-6">
-                <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary/20">
+                <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-white/20">
                   <ArrowRight className="w-6 h-6 text-primary group-hover:animate-pulse" />
                 </div>
                 <h3 className="text-xl font-bold group-hover:text-primary transition-colors duration-300">
@@ -666,7 +615,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             <div className="space-y-4">
-              <div className="text-2xl font-bold text-white bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text hover:text-transparent transition-all duration-300 cursor-pointer">
+              <div className="text-2xl font-bold text-white bg-gradient-to-r from-white to-gray-400 bg-clip-text hover:text-transparent transition-all duration-300 cursor-pointer">
                 SAURABH CHANDRA
               </div>
               <p className="text-muted-foreground leading-relaxed">

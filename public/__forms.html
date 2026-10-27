@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Form registration</title>
+  </head>
+  <body>
+    <!--
+      Netlify Forms registration page (SPA/Next.js pattern).
+      Netlify scans deployed HTML at deploy time to register the "lead" form
+      and its fields. Submissions are POSTed here from components/lead-form.tsx;
+      Netlify's edge intercepts the POST, so this file is never actually shown.
+      Configure email notifications / webhooks in: Netlify UI → Forms → lead.
+    -->
+    <form
+      name="lead"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="lead" />
+      <input type="text" name="bot-field" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="city" />
+      <input type="text" name="service" />
+      <input type="text" name="source" />
+    </form>
+  </body>
+</html>
