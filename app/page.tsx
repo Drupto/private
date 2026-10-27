@@ -20,6 +20,7 @@ import {
   Briefcase,
 } from "lucide-react"
 import { useEffect, useState } from "react"
+import LeadForm from "@/components/lead-form"
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false)
@@ -302,11 +303,23 @@ export default function Home() {
                 </Button>
                 <Button
                   variant="outline"
+                  onClick={() => scrollToSection("business")}
                   className="border-border/50 hover:border-primary/50 hover:bg-primary/10 hover:scale-105 transition-all duration-300 bg-transparent"
                 >
-                  <button onClick={() => scrollToSection("business")}>VIEW SERVICES</button>
+                  VIEW SERVICES
                 </Button>
               </div>
+            </div>
+
+            {/* Lead form — right hero column (new, no other elements touched) */}
+            <div
+              className={`transition-all duration-1000 delay-500 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+            >
+              <LeadForm
+                idPrefix="hero-lead"
+                source="homepage-hero"
+                className="lg:max-w-lg lg:ml-auto"
+              />
             </div>
           </div>
         </div>
