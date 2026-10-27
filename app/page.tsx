@@ -4,19 +4,15 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Menu,
-  Brain,
   Cloud,
-  Code,
   ArrowRight,
   X,
   Phone,
   Mail,
-  Github,
   Linkedin,
-  Twitter,
-  Instagram,
-  Award,
-  Briefcase,
+  Bot,
+  Globe,
+  MessageCircle,
 } from "lucide-react"
 import { useEffect, useState } from "react"
 import LeadForm from "@/components/lead-form"
@@ -24,28 +20,9 @@ import LeadForm from "@/components/lead-form"
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [skillsVisible, setSkillsVisible] = useState(false)
 
   useEffect(() => {
     setIsVisible(true)
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setSkillsVisible(true)
-          }
-        })
-      },
-      { threshold: 0.3 },
-    )
-
-    const skillsSection = document.getElementById("skills-timeline")
-    if (skillsSection) {
-      observer.observe(skillsSection)
-    }
-
-    return () => observer.disconnect()
   }, [])
 
   const toggleMobileMenu = () => {
@@ -70,40 +47,6 @@ export default function Home() {
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488" />
     </svg>
   )
-
-  const timeline = [
-    {
-      year: "2024",
-      title: "Founder & CEO",
-      company: "DRUPTO CONSULTANTS PRIVATE LIMITED",
-      description:
-        "Leading innovative IT consulting and AI solutions across India, specializing in enterprise digital transformation.",
-      icon: <Briefcase className="w-5 h-5" />,
-    },
-    {
-      year: "2020-2024",
-      title: "Senior AI Engineer",
-      company: "Enterprise Solutions",
-      description:
-        "Developed and deployed large-scale machine learning systems, leading cross-functional teams in AI implementation.",
-      icon: <Brain className="w-5 h-5" />,
-    },
-    {
-      year: "2018-2020",
-      title: "Full-Stack Developer",
-      company: "Tech Innovations",
-      description:
-        "Built scalable web applications and cloud infrastructure, specializing in modern JavaScript frameworks and cloud services.",
-      icon: <Code className="w-5 h-5" />,
-    },
-    {
-      year: "2014-2018",
-      title: "Software Engineer",
-      company: "Digital Solutions",
-      description: "Started career in software development, focusing on backend systems and database optimization.",
-      icon: <Award className="w-5 h-5" />,
-    },
-  ]
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden">
@@ -133,12 +76,6 @@ export default function Home() {
               className="cursor-pointer hover:text-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
             >
               Business
-            </button>
-            <button
-              onClick={() => scrollToSection("skills-timeline")}
-              className="cursor-pointer hover:text-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
-            >
-              Skills & Timeline
             </button>
             <a
               href="https://druptoconsultants.com/contact"
@@ -205,12 +142,6 @@ export default function Home() {
               className="block text-lg font-semibold hover:text-primary transition-colors w-full text-left"
             >
               Business
-            </button>
-            <button
-              onClick={() => scrollToSection("skills-timeline")}
-              className="block text-lg font-semibold hover:text-primary transition-colors w-full text-left"
-            >
-              Skills & Timeline
             </button>
             <a
               href="https://druptoconsultants.com/contact"
@@ -323,29 +254,36 @@ export default function Home() {
               About Saurabh Chandra
             </h2>
             <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
-              Hello! I'm a Software and AI Engineer passionate about building intelligent systems that solve real-world
-              problems. As the founder and owner of DRUPTO CONSULTANTS PRIVATE LIMITED, I lead a team that specializes
-              in developing scalable applications and implementing cutting-edge AI solutions.
+              I'm a Software & AI Engineer and the Founder & Owner of DRUPTO CONSULTANTS PRIVATE LIMITED — a DPIIT-recognized
+              IT consulting company based in Lucknow, India. With 10+ years of engineering experience, I lead a team that
+              designs and ships AI-powered systems for small and medium businesses.
             </p>
             <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
-              With expertise spanning machine learning, full-stack development, and cloud technologies, I bring ideas to
-              life through elegant code and innovative AI implementations. Through my company, we transform businesses
-              with innovative IT consulting and digital services across India.
+              My work spans AI agents and automation, WhatsApp Business API solutions, custom software and dashboards, and
+              cloud platforms — including DruptoQuiz, our AI-native assessment platform with live AI proctoring. I follow an
+              audit-first, fixed-scope delivery model with clean handovers: every client owns their code, logins, and
+              documentation from day one.
             </p>
             <div className="grid grid-cols-2 gap-4 mt-8">
               <div className="space-y-2">
                 <h3 className="font-semibold text-primary">Core Skills</h3>
                 <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• AI Agents & Automation</li>
                   <li>• Machine Learning</li>
                   <li>• Full-Stack Development</li>
                   <li>• Data Science</li>
                   <li>• Cloud Architecture</li>
-                  <li>• AI/ML Deployment</li>
+                  <li>• ML Ops</li>
+                  <li>• IT Infrastructure & Support</li>
                 </ul>
               </div>
               <div className="space-y-2">
-                <h3 className="font-semibold text-primary mt-4">Experience</h3>
-                <p className="text-sm text-muted-foreground">10+ Years in IT</p>
+                <h3 className="font-semibold text-primary">Experience</h3>
+                <p className="text-sm text-muted-foreground">10+ Years Engineering & IT</p>
+                <h3 className="font-semibold text-primary mt-4">Recognition</h3>
+                <p className="text-sm text-muted-foreground">DPIIT-Recognized Startup Founder</p>
+                <p className="text-sm text-muted-foreground">JIIC Incubated · GEM & MSME Registered</p>
+                <p className="text-sm text-muted-foreground">95%+ Client Retention</p>
               </div>
             </div>
           </div>
@@ -357,69 +295,6 @@ export default function Home() {
             />
           </div>
         </div>
-      </section>
-
-      {/* Professional Journey Section */}
-      <section id="skills-timeline" className="relative px-6 py-20 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4">— EXPERTISE & EXPERIENCE</p>
-          <h2 className="text-4xl font-bold mb-8 text-balance text-white hover:bg-gradient-to-r hover:from-white hover:to-gray-400 hover:bg-clip-text hover:text-transparent transition-all duration-500">
-            Professional Journey
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto">
-            A decade of experience in software engineering and AI — from writing my first production backend to leading
-            enterprise AI transformation.
-          </p>
-        </div>
-
-        {/* Alternating full-width timeline */}
-        <div className="relative max-w-5xl mx-auto">
-          {/* Timeline line */}
-          <div className="absolute left-6 lg:left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 bg-gradient-to-b from-white via-gray-400 to-white opacity-30" />
-
-          <div className="space-y-10 lg:space-y-14">
-            {timeline.map((item, index) => (
-              <div
-                key={item.year}
-                className={`relative group transition-all duration-700 ${
-                  skillsVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-                }`}
-                style={{ transitionDelay: `${index * 150}ms` }}
-              >
-                {/* Timeline dot */}
-                <div className="absolute left-6 lg:left-1/2 top-1.5 -translate-x-1/2 z-10 w-12 h-12 bg-background rounded-full flex items-center justify-center border-2 border-primary/50 group-hover:border-primary group-hover:shadow-lg group-hover:shadow-white/30 transition-all duration-300">
-                  <div className="text-primary group-hover:scale-110 transition-transform duration-300">
-                    {item.icon}
-                  </div>
-                </div>
-
-                {/* Content — alternating left/right on desktop */}
-                <div
-                  className={`pl-16 lg:pl-0 lg:w-[calc(50%-2.5rem)] ${
-                    index % 2 === 0 ? "lg:ml-auto" : "lg:mr-auto"
-                  }`}
-                >
-                  <Card className="bg-card/50 border-border/20 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-white/10 hover-lift">
-                    <CardContent className="p-6">
-                          <div className="flex items-center justify-between mb-2">
-                            <span className="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">
-                              {item.year}
-                            </span>
-                          </div>
-                          <h4 className="text-lg font-bold text-white mb-1 group-hover:text-primary transition-colors duration-300">
-                            {item.title}
-                          </h4>
-                          <p className="text-sm text-primary/80 mb-3 font-medium">{item.company}</p>
-                          <p className="text-sm text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
-                            {item.description}
-                          </p>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
       </section>
 
       {/* Business Stats Section */}
@@ -536,13 +411,14 @@ export default function Home() {
               — DRUPTO CONSULTANTS
             </p>
             <h2 className="text-4xl font-bold mb-8 text-balance text-white hover:bg-gradient-to-r hover:from-white hover:to-gray-400 hover:bg-clip-text hover:text-transparent transition-all duration-500">
-              Leading IT Solutions Provider
+              AI & IT Solutions
               <br />
-              in India
+              for Growing Businesses
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto">
-              Transforming businesses with innovative IT consulting and digital services. Your trusted partner for
-              cutting-edge technology solutions across India.
+              From AI agents and WhatsApp automation to cloud platforms and business portals — fixed-scope,
+              compliance-aware solutions launched in weeks, not months. You own the code, logins, and documentation from
+              day one.
             </p>
           </div>
 
@@ -550,14 +426,14 @@ export default function Home() {
             <Card className="bg-card border-border/20 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-white/10 group">
               <CardContent className="p-8 space-y-6">
                 <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-white/20">
-                  <Brain className="w-6 h-6 text-primary group-hover:animate-pulse" />
+                  <Bot className="w-6 h-6 text-primary group-hover:animate-pulse" />
                 </div>
                 <h3 className="text-xl font-bold group-hover:text-primary transition-colors duration-300">
-                  AI & Generative AI
+                  AI Agents & Automation
                 </h3>
                 <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300 text-sm">
-                  Cutting-edge artificial intelligence services to transform business operations with intelligent
-                  automation and machine learning.
+                  AI agents and chatbots that answer from your documents, qualify leads, and automate repetitive
+                  workflows — proven in production with DruptoQuiz, our AI-native assessment platform.
                 </p>
               </CardContent>
             </Card>
@@ -568,11 +444,11 @@ export default function Home() {
                   <Cloud className="w-6 h-6 text-primary group-hover:animate-pulse" />
                 </div>
                 <h3 className="text-xl font-bold group-hover:text-primary transition-colors duration-300">
-                  Cloud Computing
+                  Cloud & DevOps
                 </h3>
                 <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300 text-sm">
-                  Comprehensive cloud infrastructure and services to modernize IT environments with scalable, secure
-                  solutions.
+                  Audit-first migration to AWS or GCP with cost guardrails — infrastructure as code, backups, monitoring,
+                  and CI/CD, handed over with runbooks and full documentation.
                 </p>
               </CardContent>
             </Card>
@@ -580,14 +456,14 @@ export default function Home() {
             <Card className="bg-card border-border/20 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-white/10 group">
               <CardContent className="p-8 space-y-6">
                 <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-white/20">
-                  <Code className="w-6 h-6 text-primary group-hover:animate-pulse" />
+                  <Globe className="w-6 h-6 text-primary group-hover:animate-pulse" />
                 </div>
                 <h3 className="text-xl font-bold group-hover:text-primary transition-colors duration-300">
-                  IT Consultancy
+                  Websites & Portals
                 </h3>
                 <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300 text-sm">
-                  Expert consultancy offering professional advice on design, development, and implementation of computer
-                  systems.
+                  Fast, SEO-ready business websites, Shopify stores, and client portals that turn visits into enquiries —
+                  live in 2–5 weeks, with CMS access and analytics included.
                 </p>
               </CardContent>
             </Card>
@@ -595,14 +471,14 @@ export default function Home() {
             <Card className="bg-card border-border/20 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-white/10 group">
               <CardContent className="p-8 space-y-6">
                 <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-white/20">
-                  <ArrowRight className="w-6 h-6 text-primary group-hover:animate-pulse" />
+                  <MessageCircle className="w-6 h-6 text-primary group-hover:animate-pulse" />
                 </div>
                 <h3 className="text-xl font-bold group-hover:text-primary transition-colors duration-300">
-                  Portal Management
+                  WhatsApp Automation
                 </h3>
                 <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300 text-sm">
-                  Comprehensive management and operation of websites functioning as internet portals, including media
-                  platforms.
+                  The channel your customers already use — catalogs, bookings, reminders, support, and broadcast campaigns
+                  on the official API, synced with your CRM.
                 </p>
               </CardContent>
             </Card>
@@ -611,103 +487,60 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border/20 px-6 py-16 mt-20">
+      <footer className="border-t border-border/20 px-6 py-12 mt-20">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div className="grid md:grid-cols-3 gap-8 mb-10">
             <div className="space-y-4">
               <div className="text-2xl font-bold text-white bg-gradient-to-r from-white to-gray-400 bg-clip-text hover:text-transparent transition-all duration-300 cursor-pointer">
                 SAURABH CHANDRA
               </div>
-              <p className="text-muted-foreground leading-relaxed">
-                Software & AI Engineer passionate about building intelligent systems that solve real-world problems.
+              <p className="text-muted-foreground leading-relaxed text-sm">
+                Founder & Owner, DRUPTO CONSULTANTS PRIVATE LIMITED — AI & IT solutions for growing businesses.
               </p>
               <div className="flex space-x-4">
                 <a
-                  href="https://github.com/SaurabhChandra1024"
-                  className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center hover:bg-primary/30 hover:scale-110 transition-all duration-300 cursor-pointer"
-                >
-                  <Github className="w-5 h-5 text-primary" />
-                </a>
-                <a
                   href="https://linkedin.com/in/saurabh-c-287285167"
+                  aria-label="LinkedIn"
                   className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center hover:bg-primary/30 hover:scale-110 transition-all duration-300 cursor-pointer"
                 >
                   <Linkedin className="w-5 h-5 text-primary" />
-                </a>
-                <a
-                  href="https://twitter.com/saurabh474"
-                  className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center hover:bg-primary/30 hover:scale-110 transition-all duration-300 cursor-pointer"
-                >
-                  <Twitter className="w-5 h-5 text-primary" />
-                </a>
-                <a
-                  href="https://instagram.com/saurabhchandra.in"
-                  className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center hover:bg-primary/30 hover:scale-110 transition-all duration-300 cursor-pointer"
-                >
-                  <Instagram className="w-5 h-5 text-primary" />
                 </a>
               </div>
             </div>
 
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-white">Services</h3>
+              <h3 className="text-lg font-semibold text-white">Explore</h3>
               <ul className="space-y-2">
                 <li>
-                  <span className="text-muted-foreground hover:text-primary transition-colors duration-300 cursor-pointer">
-                    AI & Machine Learning
-                  </span>
-                </li>
-                <li>
-                  <span className="text-muted-foreground hover:text-primary transition-colors duration-300 cursor-pointer">
-                    Cloud Computing
-                  </span>
-                </li>
-                <li>
-                  <span className="text-muted-foreground hover:text-primary transition-colors duration-300 cursor-pointer">
-                    IT Consultancy
-                  </span>
-                </li>
-                <li>
-                  <span className="text-muted-foreground hover:text-primary transition-colors duration-300 cursor-pointer">
-                    Portal Management
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-white">Company</h3>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="https://druptoconsultants.com/"
+                  <button
+                    onClick={() => scrollToSection("home")}
                     className="text-muted-foreground hover:text-primary transition-colors duration-300 cursor-pointer"
                   >
-                    DRUPTO CONSULTANTS
-                  </a>
+                    Home
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection("about")}
+                    className="text-muted-foreground hover:text-primary transition-colors duration-300 cursor-pointer"
+                  >
+                    About
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection("business")}
+                    className="text-muted-foreground hover:text-primary transition-colors duration-300 cursor-pointer"
+                  >
+                    Services
+                  </button>
                 </li>
                 <li>
                   <a
-                    href="https://druptoconsultants.com/about"
+                    href="https://druptoconsultants.com"
                     className="text-muted-foreground hover:text-primary transition-colors duration-300 cursor-pointer"
                   >
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://druptoconsultants.com/services"
-                    className="text-muted-foreground hover:text-primary transition-colors duration-300 cursor-pointer"
-                  >
-                    Our Services
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://druptoconsultants.com/contact"
-                    className="text-muted-foreground hover:text-primary transition-colors duration-300 cursor-pointer"
-                  >
-                    Contact Us
+                    DRUPTO CONSULTANTS ↗
                   </a>
                 </li>
               </ul>
@@ -715,24 +548,28 @@ export default function Home() {
 
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-white">Get in Touch</h3>
-              <div className="space-y-3">
-                <p className="text-muted-foreground">contact@saurabhchandra.in</p>
-                <p className="text-muted-foreground">+91-63880-63038</p>
+              <div className="space-y-2">
+                <a
+                  href="mailto:contact@saurabhchandra.in"
+                  className="block text-muted-foreground hover:text-primary transition-colors duration-300"
+                >
+                  contact@saurabhchandra.in
+                </a>
+                <a
+                  href="tel:+916388063038"
+                  className="block text-muted-foreground hover:text-primary transition-colors duration-300"
+                >
+                  +91-63880-63038
+                </a>
                 <p className="text-muted-foreground">Lucknow, Uttar Pradesh, India</p>
               </div>
             </div>
           </div>
 
-          <div className="border-t border-border/20 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-muted-foreground text-sm">© 2024 Saurabh Chandra. All rights reserved.</p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <span className="text-muted-foreground hover:text-primary transition-colors duration-300 text-sm cursor-pointer">
-                Privacy Policy
-              </span>
-              <span className="text-muted-foreground hover:text-primary transition-colors duration-300 text-sm cursor-pointer">
-                Terms of Service
-              </span>
-            </div>
+          <div className="border-t border-border/20 pt-8 text-center">
+            <p className="text-muted-foreground text-sm">
+              © {new Date().getFullYear()} Saurabh Chandra. All rights reserved.
+            </p>
           </div>
         </div>
       </footer>

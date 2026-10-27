@@ -129,7 +129,7 @@ const LeadForm = ({
   return (
     <div
       id={anchorId}
-      className={`rounded-2xl rounded-tl-[2.5rem] bg-card/80 backdrop-blur border border-primary/20 p-6 md:p-8 shadow-xl shadow-white/10 hover:shadow-white/20 transition-shadow scroll-mt-24 ${className}`}
+      className={`rounded-2xl rounded-tl-[2.5rem] bg-transparent border border-primary/20 p-6 md:p-8 transition-shadow scroll-mt-24 ${className}`}
     >
       <h2 id={headingId} className="text-xl md:text-2xl font-semibold text-primary mb-1">
         {title}
